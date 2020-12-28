@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Inject, Injectable } from '@angular/core';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,11 @@ export class HttpService {
   GetServices(url: string){
       console.log(this._baseUrl + url);
       return this.http.get(this._baseUrl + url);
-  }  
+  }
+
+  PostData(url: string, data: any) : Observable<any> {
+    console.log(data);
+    return this.http.post<any>(this._baseUrl + url, data);
+  }
 }
   
