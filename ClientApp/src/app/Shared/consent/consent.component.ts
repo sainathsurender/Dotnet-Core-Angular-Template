@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal,NgbModalConfig, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-consent',
   templateUrl: './consent.component.html',
-  styleUrls: ['./consent.component.css']
+  styleUrls: ['./consent.component.css'],
+  providers: [NgbModal,NgbModalConfig]
 })
 export class ConsentComponent {
 
-  constructor(private modalService: NgbModal) { }
+  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+   }
 
   close(type) {
     if(type == "accept")
