@@ -13,6 +13,8 @@ import { HttpService } from "./Services/http.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsentComponent } from './Shared/consent/consent.component';
 import { PosteexampleComponent } from './Components/posteexample/posteexample.component';
+import { DashboardModule } from './Components/dashboard-tiles/dashboard/dashboard.module';
+import { CaseDetailsComponent } from './Components/dashboard-tiles/case-details/case-details.component';
 import { DashboardTilesComponent } from './Components/dashboard-tiles/dashboard-tiles.component';
 
 @NgModule({
@@ -24,6 +26,7 @@ import { DashboardTilesComponent } from './Components/dashboard-tiles/dashboard-
     FetchDataComponent,
     ConsentComponent,
     PosteexampleComponent,
+    CaseDetailsComponent,
     DashboardTilesComponent
   ],
   imports: [
@@ -32,7 +35,8 @@ import { DashboardTilesComponent } from './Components/dashboard-tiles/dashboard-
     FormsModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DashboardModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent],
