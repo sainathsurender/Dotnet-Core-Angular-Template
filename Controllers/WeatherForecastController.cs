@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 namespace DotnetAngularSample.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -24,6 +23,7 @@ namespace DotnetAngularSample.Controllers
         }
 
         [HttpGet]
+        [Route("api/WeatherForecast/GetData")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

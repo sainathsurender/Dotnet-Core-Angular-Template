@@ -11,8 +11,15 @@ import { HttpService } from "../../Services/http.service";
 export class FetchDataComponent {
   public forecasts: any;
 
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+    { name: 'Dany', gender: 'Male', company: 'KFC' },
+    { name: 'Molly', gender: 'Female', company: 'Burger King' }
+  ];
+  columns = [{ prop: 'Date' }, { name: 'TemperatureC' }, { name: 'Summary' }];
+
   constructor(_service: HttpService) {
-    _service.GetServices('weatherforecast').subscribe(result => {
+    _service.GetServices('api/WeatherForecast/GetData').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }

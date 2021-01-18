@@ -13,9 +13,7 @@ import { HttpService } from "./Services/http.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsentComponent } from './Shared/consent/consent.component';
 import { PosteexampleComponent } from './Components/posteexample/posteexample.component';
-import { DashboardModule } from './Components/dashboard-tiles/dashboard/dashboard.module';
-import { CaseDetailsComponent } from './Components/dashboard-tiles/case-details/case-details.component';
-import { DashboardTilesComponent } from './Components/dashboard-tiles/dashboard-tiles.component';
+import { DashboardModule } from './Components/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -25,9 +23,7 @@ import { DashboardTilesComponent } from './Components/dashboard-tiles/dashboard-
     CounterComponent,
     FetchDataComponent,
     ConsentComponent,
-    PosteexampleComponent,
-    CaseDetailsComponent,
-    DashboardTilesComponent
+    PosteexampleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
