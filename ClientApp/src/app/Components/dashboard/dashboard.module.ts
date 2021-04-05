@@ -6,12 +6,24 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardTilesComponent } from './dashboard-tiles/dashboard-tiles.component';
 import { CaseDetailsComponent } from './case-details/case-details.component';
 
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [DashboardComponent, DashboardTilesComponent, CaseDetailsComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    MatTableModule,
+    MatIconModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatFormFieldModule
   ]
 })
 export class DashboardModule { }

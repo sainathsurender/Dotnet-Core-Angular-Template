@@ -16,6 +16,7 @@ export class ConsentComponent {
    }
 
   close(type) {
+    localStorage.setItem('consentDate', new Date().toString());
     if(type == "accept")
     {
       localStorage.setItem('consent', type);

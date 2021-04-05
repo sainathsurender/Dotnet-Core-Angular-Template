@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConsentComponent } from './Shared/consent/consent.component';
 import { PosteexampleComponent } from './Components/posteexample/posteexample.component';
 import { DashboardModule } from './Components/dashboard/dashboard.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DashboardModule } from './Components/dashboard/dashboard.module';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    DashboardModule
+    DashboardModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent],
