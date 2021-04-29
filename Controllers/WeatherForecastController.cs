@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using DotnetAngularSample.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -18,10 +21,12 @@ namespace DotnetAngularSample.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IDIDTO _dIDTO;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger,IDIDTO dIDTO)
         {
             _logger = logger;
+            _dIDTO = dIDTO;
         }
 
         [HttpGet]
@@ -29,6 +34,7 @@ namespace DotnetAngularSample.Controllers
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
+            var test = _dIDTO.ReturnId();
             return Enumerable.Range(1, 50).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -65,5 +71,34 @@ namespace DotnetAngularSample.Controllers
                 Description = (x.Element("description").FirstNode as XText).Value
             }).ToList();
         }
+
+        [HttpPost]
+        [Route("api/WeatherForecast/UploadData")]
+        public async Task<IActionResult> Upload([FromForm] Profile profile)
+        {
+            var formCollection = await Request.ReadFormAsync();
+            var files = formCollection.Files;
+            foreach (var file in files)
+            {
+                // var blobContainerClient = new BlobContainerClient("UseDevelopmentStorage=true","images");
+                // blobContainerClient.CreateIfNotExists();
+                // var containerClient = blobContainerClient.GetBlobClient(file.FileName);
+                // var blobHttpHeader = new BlobHttpHeaders
+                // {
+                //     ContentType = file.ContentType
+                // };
+                // await containerClient.UploadAsync(file.OpenReadStream(), blobHttpHeader);
+            }
+
+            return Ok();
+        }
+    }
+
+    public class Profile
+    {
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public List<IFormFile> TileImage { get; set; }
     }
 }

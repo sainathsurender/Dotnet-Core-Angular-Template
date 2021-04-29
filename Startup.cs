@@ -1,5 +1,7 @@
+using DotnetAngularSample.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +28,8 @@ namespace DotnetAngularSample
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddScoped<IDIDTO,DIDTO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
