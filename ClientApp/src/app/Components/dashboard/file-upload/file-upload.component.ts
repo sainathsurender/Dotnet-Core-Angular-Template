@@ -37,7 +37,6 @@ export class FileUploadComponent {
 
     this.http.post('https://localhost:5001/api/WeatherForecast/UploadData', formData)
     .subscribe(res => {
-
       alert('Uploaded!!');
     });
 

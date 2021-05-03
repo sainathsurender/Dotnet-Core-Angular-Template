@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace DotnetAngularSample.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IDIDTO _dIDTO;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,IDIDTO dIDTO)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDIDTO dIDTO)
         {
             _logger = logger;
             _dIDTO = dIDTO;
@@ -60,13 +61,14 @@ namespace DotnetAngularSample.Controllers
             var result = httpClient.GetAsync(@"https://www.altnews.in/feed/").Result;
 
             var stream = result.Content.ReadAsStreamAsync().Result;
-            
-            var itemXml = XElement.Load(stream);            
+
+            var itemXml = XElement.Load(stream);
 
             var locElement = itemXml.Elements().Elements(XName.Get("item"));
             var test = locElement.Elements();
             // Console.WriteLine(locElement.Value);
-            return locElement.Select(x => new Item{
+            return locElement.Select(x => new Item
+            {
                 Title = (x.Element("title").FirstNode as XText).Value,
                 Description = (x.Element("description").FirstNode as XText).Value
             }).ToList();
@@ -88,6 +90,16 @@ namespace DotnetAngularSample.Controllers
                 //     ContentType = file.ContentType
                 // };
                 // await containerClient.UploadAsync(file.OpenReadStream(), blobHttpHeader);
+                if (file.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        string s = Convert.ToBase64String(fileBytes);
+                        // act on the Base64 data
+                    }
+                }
             }
 
             return Ok();
