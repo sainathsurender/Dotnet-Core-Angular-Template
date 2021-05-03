@@ -90,15 +90,10 @@ namespace DotnetAngularSample.Controllers
                 //     ContentType = file.ContentType
                 // };
                 // await containerClient.UploadAsync(file.OpenReadStream(), blobHttpHeader);
-                if (file.Length > 0)
+                using (var memoryStream = new MemoryStream())
                 {
-                    using (var ms = new MemoryStream())
-                    {
-                        file.CopyTo(ms);
-                        var fileBytes = ms.ToArray();
-                        string s = Convert.ToBase64String(fileBytes);
-                        // act on the Base64 data
-                    }
+                    await file.CopyToAsync(memoryStream);
+                    var test = memoryStream.ToArray();
                 }
             }
 
